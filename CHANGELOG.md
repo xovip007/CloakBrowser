@@ -10,9 +10,18 @@ Changes are tagged: **[wrapper]** for Python/JS wrapper, **[binary]** for Chromi
 
 ## [0.4.8] — 2026-07-05
 
+- **[binary]** Chromium **148.0.7778.215.5** (Pro, Windows + Linux; macOS follows) — the biggest fingerprint update yet. Pro license required; v146 stays free.
+  - **More common, more coherent hardware identities** — each `--fingerprint` seed is built from the most common real-world hardware values (screen, GPU, RAM, CPU cores, color depth, fonts, audio), chosen together so they form a popular, self-consistent device with no internal contradictions.
+  - Deeper, more consistent **Windows persona** — expanded and localized font populations, tighter graphics/display alignment, and seed-coherent screen size, color depth, and audio across browser- and OS-level signals.
+  - Expanded **NVIDIA GPU profiles**, each matched to a plausible CPU, RAM, and screen combination.
+  - **Window and screen geometry coherence** in both headed and headless modes (pairs with the wrapper's new maximized-window default).
+  - Greater **WebGL and WebGPU realism**, including consistent behavior under timing inspection.
+  - **Cleaner proxy behavior** — better proxy-auth handling and less proxy-specific reload and cache leakage.
+  - New **pass-through debug mode** (`--fingerprint=off`) and a **third-party-cookie compatibility flag** (`--fingerprint-allow-3p-cookies`).
+  - **Runtime Pro license sessions** — privacy-preserving groundwork for future session-limit enforcement (`--license-through-proxy` opts these calls onto your proxy, Linux only for now).
 - **[wrapper]** `geoip=True` now works **without a proxy** — on a direct connection it resolves the machine's own public IP for timezone, locale, and the WebRTC exit IP (previously it no-oped without a proxy, leaving UTC + `en-US` in bare Docker/cloud launches). Locale coverage expanded from 50 to **132 countries**. Python, JS, and .NET.
 - **[wrapper]** Headed and headless launches now open **maximized** on the newest Pro binaries (version-gated, same threshold as the headless no-viewport default), so the window fills the spoofed screen and window/screen geometry stays self-consistent. Suppressed when you set an explicit window size/position or viewport; older and free binaries are unchanged. Python, JS, and .NET.
-- **[docs]** Documented the Chromium 148+ pass-through and compatibility flags you can pass via `args`: `--fingerprint=off` (native pass-through debug mode), `--fingerprint-allow-3p-cookies` (third-party-cookie compatibility for reCAPTCHA v3 / SSO / payment challenges), and `--license-through-proxy` (route license/session calls through your proxy, Linux only).
+- **[docs]** Documented the Chromium 148+ pass-through and compatibility flags you can pass via `args`: `--fingerprint=off` (native pass-through debug mode), `--fingerprint-allow-3p-cookies` (third-party-cookie compatibility for reCAPTCHA v3 / SSO / payment challenges), and `--license-through-proxy` (route license/session calls through your proxy, Linux only for now).
 
 ## [0.4.7] — 2026-07-02
 
