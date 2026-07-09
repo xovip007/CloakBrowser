@@ -8,7 +8,11 @@ Changes are tagged: **[wrapper]** for Python/JS wrapper, **[binary]** for Chromi
 
 ## [Unreleased]
 
+## [0.4.9] — 2026-07-09
+
 - **[wrapper]** Free-tier launch banner and `cloakbrowser info` upgrade hint now surface the **7-day free Pro trial** (Chromium 148). Python, JS, and .NET.
+- **[wrapper]** `info`/`update` never diverge from the Pro build that actually launches — `info` now shows both the cached build that will launch and the server's latest Pro version so the two can no longer silently disagree. Unpinned launches prefer the server's latest when it's newer than (or replaces a missing) cached build; `update` is license-aware (a valid Pro key updates the Pro binary, everyone else updates free); the background Pro update check is now a rate-limited foreground check (one call/hour, honors `CLOAKBROWSER_AUTO_UPDATE=false`); a valid Pro license never silently falls back to free; binary verification failures now surface verbatim instead of falling back to a cached build. Python, JS, and .NET.
+- **[wrapper]** `info`/`doctor` Windows-font check now covers the full 8-font set (adds the two monospace fonts) and reports a strict N/8 count, with the launch-time warning firing on any incomplete set rather than only a fully-missing one. Adds a separate Office-font group (10 fonts) reported as informational N/10 with no install nudge. Python, JS, and .NET.
 
 ## [0.4.8] — 2026-07-05
 
